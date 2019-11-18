@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
  
@@ -37,3 +38,18 @@ var onPaint = function() {
 function erase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
+
+function saveImage(){
+    var canvas = document.getElementById("myCanvas");
+    var dataURL=canvas.toDataURL();
+    console.log(dataURL);
+    $.ajax({
+      type: 'POST',
+      url: '/predictedNumber',
+      data: {
+        imgBase64: dataURL
+      }
+    }).done(function(e){
+      console.log('SENT');
+    });
+  };
