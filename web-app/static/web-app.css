@@ -1,0 +1,28 @@
+#canvasDiv{
+    margin: 0px auto;
+    text-align: center;
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
+    }
+    #buttonDiv{
+      margin: 0px auto;
+      text-align: center;
+      padding: 20px;
+    }     
+    #saveBtn{
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 12px;
+    }
+    #clearBtn{
+      background-color: red; 
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 12px;
+    }

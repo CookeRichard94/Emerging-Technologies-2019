@@ -33,3 +33,7 @@ var onPaint = function() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
 };
+
+function erase() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
