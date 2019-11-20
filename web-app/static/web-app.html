@@ -11,48 +11,52 @@
         Hand-Written Digit Reader
     </title>
     <style>
-        #canvasDiv {
-            margin: 0px auto;
-            text-align: center;
-            width: 500px;
-            height: 500px;
-            border: 2px solid black;
-        }
+    #canvasDiv {
+  margin: 0px auto;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+  border: 5px solid black;
+}
 
-        #buttonDiv {
-            margin: 20px auto;
-            text-align: center;
-            padding: 20px;
-        }
+#buttonDiv {
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+}
 
-        #submitBtn {
-            background-color: rgba(3, 151, 3, 0.904);
-            color: black;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 20px;
-            border-radius: 12px;
-        }
+#predictBtn {
+  background-color: rgba(3, 151, 3, 0.904);
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 50%;
+}
 
-        #clearBtn {
-            background-color: gold;
-            color: black;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 20px;
-            border-radius: 12px;
-        }
+#restartBtn {
+  background-color: gold;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 50%;
+}
     </style>
 </head>
 
 <body>
+    <div id="buttonDiv">
+        <button id="predictBtn" onclick="predict()">Predict</button>
+        <button id="restartBtn" onclick="erase()">Restart</button>
+    </div>
     <div id="canvasDiv">
         <canvas id="myCanvas"></canvas>
     </div>
-    <div id="buttonDiv">
-        <button id="submitBtn" onclick="saveImage()">Submit</button> <button id="clearBtn"
-            onclick="erase()">Clear</button>
+    <div id="prediction">
+        <p id="predictedNumber"></p>
     </div>
+
     <!--Calling the Jquery script from an online source-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -113,7 +117,7 @@
         }
 
         // function to save the image created in the canvas
-        function saveImage() {
+        function predict() {
             //directed to take the image 
             var canvas = document.getElementById("myCanvas");
             var dataURL = canvas.toDataURL();
@@ -122,13 +126,16 @@
             // Using Ajax post method for the image
             $.ajax({
                 type: 'POST',
-                url: '/predictedNumber',
+                url: '/predict',
                 data: {
                     imgBase64: dataURL
                 }
-            }).done(function (e) {
-                // Loggin to the console to confirm 
+            }).done(function (data) {
+                // Logging to the console to confirm 
                 console.log('SENT');
+                // sending predicted number to the console
+                console.log(data);
+                $("#predictedNumber").empty().append(data);
             });
         };
     </script>
