@@ -54,8 +54,11 @@ def convertImage():
     # Open the recently created image
     userImage = Image.open("image.png")
 
-    # Resize the image to fight the mnist dataset
+    # Resize the image to fit the mnist dataset using imageOps import from PIL
     newImage = ImageOps.fit(userImage, size, Image.ANTIALIAS)
+
+    # Other attempt for resizing image
+    # newImage = userImage.thumbnail(size, Image.ANTIALIAS)
 
     # save the newly resized image
     newImage.save("imageResized.png")
