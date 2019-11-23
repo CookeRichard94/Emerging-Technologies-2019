@@ -82,6 +82,10 @@ def convertImage():
     predictedNumber = str(np.argmax(getPrediction))
     print(predictedNumber)
 
+    # May attempt to return whole array with outputs like in model to determine what the model is predicting
+    #predictedNumber = str((getPrediction))
+    # This returns a one hot vector 
+
     # returns the predicted number to be passed to the .js file
     return predictedNumber
 app.run()
