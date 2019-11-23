@@ -43,6 +43,9 @@
   font-size: 20px;
   border-radius: 50%;
 }
+#prediction {
+    text-align: center;
+}
     </style>
 </head>
 
@@ -55,6 +58,7 @@
         <canvas id="myCanvas"></canvas>
     </div>
     <div id="prediction">
+        <p>Predicted Number:</p>
         <p id="predictedNumber"></p>
     </div>
 
@@ -81,7 +85,9 @@
         }, false);
 
         //width of the line
-        ctx.lineWidth = 3;
+        // image appears closer to typical mnist data image ith line size at 15
+        //  May make predicitions more accurate
+        ctx.lineWidth = 15;
 
         // specifying how you want the image to be drawn eg "round" will have no edges
         ctx.lineJoin = 'round';
@@ -96,7 +102,6 @@
             ctx.beginPath();
             // draw the line following the mouse position
             ctx.moveTo(mouse.x, mouse.y);
-
             canvas.addEventListener('mousemove', onPaint, false);
         }, false);
 
@@ -113,8 +118,10 @@
 
         // function to clear the canvas completely
         // Attched to the clearButton
+        // Also now clears guessed number
         function erase() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            $('#predictedNumber').text('');
         }
 
         // function to save the image created in the canvas
@@ -144,3 +151,10 @@
 </body>
 
 </html>
+
+<!--
+    References
+    https://github.com/ianmcloughlin/random-web-app
+    https://web.microsoftstream.com/video/d792fd34-356d-4b7c-80f8-936c5d2877e1
+    https://www.html5canvastutorials.com/labs/html5-canvas-paint-application/
+-->

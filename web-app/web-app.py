@@ -3,7 +3,8 @@
 
 #env FLASK_APP=web-app.py flask run
 
-# Flask web app to that reads the data in the static html page and passes it to the model in the jupyter notebook
+# Flask web app to that reads the data in the static html page and passes it to the model in the jupyter notebook and returns a 
+# prediction which should match the data passed from the html file
 
 # Importing flask
 import flask as fl
@@ -11,7 +12,10 @@ import flask as fl
 # Used to plot data
 import numpy as np
 
+# Used for encoding and decoding data
 import base64
+
+# 
 import cv2
 
 # Imports from Python Image Library
@@ -25,9 +29,9 @@ model = load_model('../digit_reader.h5')
 
 app = fl.Flask(__name__)
 
+# Variables for resizing image to fit the mnist dataset
 height = 28
 width = 28
-
 size = height, width
 
 # Routing
@@ -67,16 +71,22 @@ def convertImage():
     cv2Image = cv2.imread("imageResized.png")
 
     # Converting the new image to grayscale, reshaping and adding to nparray
-    grayImage = cv2.cvtColor(cv2Image, cv2.COLOR_BGR2GRAY)
-    grayArray = np.array(grayImage).reshape(1, 784)
+    grayScaleImage = cv2.cvtColor(cv2Image, cv2.COLOR_BGR2GRAY)
+    grayScaleArray = np.array(grayScaleImage).reshape(1, 784)
 
-    #
-    setPrediction = model.predict(grayArray)
+    # setter and getter to return the predicition from the model
+    setPrediction = model.predict(grayScaleArray)
     getPrediction = np.array(setPrediction[0])
 
-    #
+    # np.argmax returns the highest value ie what should be the same as the digit passed
     predictedNumber = str(np.argmax(getPrediction))
     print(predictedNumber)
 
+    # returns the predicted number to be passed to the .js file
     return predictedNumber
 app.run()
+
+# References
+# https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html
+# https://stackoverflow.com/questions/273946/how-do-i-resize-an-image-using-pil-and-maintain-its-aspect-ratio
+# https://stackoverflow.com/questions/12201577/how-can-i-convert-an-rgb-image-into-grayscale-in-python
