@@ -12,7 +12,7 @@ For this application a number of necessary installs need to be made:
 
 ## 3. Research
 ### 3.1 Jupyter Notebook/Lab
-
+Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. 
 ### 3.2 Keras
 
 ### 3.3 Tensorflow
@@ -30,6 +30,7 @@ For this application a number of necessary installs need to be made:
 * To make another prediction press the "Restart" button highlighted in yellow. This will clear the canvas and predicted number and allow for a new prediction to be made.
 
 ## 5. References
+ * https://keras.io/
  *
  *
  *
@@ -38,5 +39,4 @@ For this application a number of necessary installs need to be made:
  *
  *
  *
- *
- *
+ * https://pypi.org/project/opencv-python/
