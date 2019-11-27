@@ -9,13 +9,14 @@
 # Importing flask
 import flask as fl
 
+
 # Used to plot data
 import numpy as np
 
 # Used for encoding and decoding data
 import base64
 
-# 
+# Library of python bindings for visual problems
 import cv2
 
 # Imports from Python Image Library
@@ -39,21 +40,21 @@ size = height, width
 @app.route('/')
 def home():
     # returns the static html file
-    return app.send_static_file('web-app.html')
+    return fl.render_template('web-app.html')
 
 
 @app.route('/predict', methods=['POST'])
 def convertImage():
     # get the image from the request
-    encodedImage = fl.request.values[('imgBase64')]
+    encoded = fl.request.values[('imgBase64')]
 
     # decode the dataURL
     # remove the added part of the url start from the 22 index of the image array
-    decodedImage = base64.b64decode(encodedImage[22:])
+    decoded = base64.b64decode(encoded[22:])
 
     # save the image
     with open('image.png', 'wb') as f:
-        f.write(decodedImage)
+        f.write(decoded)
     
     # Open the recently created image
     userImage = Image.open("image.png")
@@ -84,7 +85,8 @@ def convertImage():
 
     # May attempt to return whole array with outputs like in model to determine what the model is predicting
     #predictedNumber = str((getPrediction))
-    # This returns a one hot vector 
+    #print(predictedNumber)
+    # This returns a one hot vector, with binary results, was hoping for an array of normalized percentages 
 
     # returns the predicted number to be passed to the .js file
     return predictedNumber
