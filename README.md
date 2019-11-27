@@ -9,6 +9,7 @@ For this application a number of necessary installs need to be made:
   * Alternatively if you have already installed an older version of python, then enter the command line and enter the command ```conda update --all ```
 * Keras/ Tensorflow: To install the necessary Keras/Tensorflow packages then follow the instructions in [this](https://web.microsoftstream.com/video/f6bd0f1c-802c-4c0a-bc54-211bc9d85ba5) or enter the following command into the command line ``` conda install -c conda-forge keras tensorflow ```
 * OpenCV: To install OpenCV enter the command line and enter the command ```pip install opencv-python ```
+* A comprehensive list of all necessary packages and versions of said packages is also provided within the ```requirements.txt``` file of this repository.
 
 ## 3. Research
 ### 3.1 Jupyter Notebook/Lab
