@@ -19,6 +19,10 @@ Jupyter Notebook is an open-source web application that allows you to create and
 
 ### 3.4 MNIST
 
+### 3.5 OpenCV
+
+### 3.6 Other
+
 ## 4. How to Run
 
 * Download the repository by entering the command line and entering the command ```Git Clone https://github.com/CookeRichard94/Emerging-Technologies-2019 ```
