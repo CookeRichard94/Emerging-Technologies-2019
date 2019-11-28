@@ -73,7 +73,9 @@ def convertImage():
 
     # Converting the new image to grayscale, reshaping and adding to nparray
     grayScaleImage = cv2.cvtColor(cv2Image, cv2.COLOR_BGR2GRAY)
-    grayScaleArray = np.array(grayScaleImage).reshape(1, 784)
+    # Converting to float32 and dividing by 255 for attempted normilization(Does not really impact accuracy of web app)
+    grayScaleArray = np.array(grayScaleImage, dtype=np.float32).reshape(1, 784)
+    grayScaleArray /= 255
 
     # setter and getter to return the predicition from the model
     setPrediction = model.predict(grayScaleArray)
