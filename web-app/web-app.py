@@ -92,7 +92,12 @@ def convertImage():
 
     # returns the predicted number to be passed to the .js file
     return predictedNumber
-app.run()
+
+# Had to add threaded = false to app.run as keras multithreading issue had developed.
+# https://github.com/keras-team/keras/issues/13353
+# This solution appears to have worked
+app.run(threaded=False)
+
 
 # References
 # https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html
